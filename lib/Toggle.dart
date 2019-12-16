@@ -59,8 +59,13 @@ class _ToggleAppPageState extends State<ToggleAppPage>{
       appBar: new AppBar(
         title: new Text('Toggle App'),
       ),
-      body: new Center(
-        child: _getToggleChild(),
+      body: new Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          _getToggleChild(),
+          new Text("Row two"),
+        ],
+
       ),
       
       floatingActionButton: new FloatingActionButton(

@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'ToastUtils.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class ListPager extends StatelessWidget{
 
@@ -78,7 +79,10 @@ class _ListAppPageState extends State<ListAppPage>{
   Widget getItemWidget(int i) {
     //BoxFit 可设置展示图片时 的填充方式
     try{
-      return new Image(image: new NetworkImage(urls[i%urls.length]), fit: BoxFit.cover);
+      return  new FadeInImage.memoryNetwork(
+          placeholder: kTransparentImage,
+          image: urls[i%urls.length],
+          fit: BoxFit.cover);
     }catch(e){
       return Container();
     }
