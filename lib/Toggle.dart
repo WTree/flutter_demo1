@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app1/views/dialogs/LoadingDialog.dart';
 
 class ToggleApp extends StatelessWidget{
   @override
@@ -36,6 +37,16 @@ class ToggleAppPage extends StatefulWidget{
 
 }
 
+ showLoading(BuildContext context){
+
+  showDialog(context: context,
+
+    barrierDismissible: false,
+    builder: (BuildContext context){
+        return new LoadingDialog(text:" 正在加载...",);
+    }
+  );
+}
 
 class _ToggleAppPageState extends State<ToggleAppPage>{
 
@@ -69,7 +80,10 @@ class _ToggleAppPageState extends State<ToggleAppPage>{
       ),
       
       floatingActionButton: new FloatingActionButton(
-          onPressed: _toggle,
+//          onPressed: _toggle,
+          onPressed: (){
+            showLoading(context);
+          },
           tooltip: 'update Text',
           child: new Icon(Icons.update),
       ),

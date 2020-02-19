@@ -43,7 +43,8 @@ class MainPage extends StatefulWidget{
 class _TabItem{
   String name,activeIcon,normalIcon;
 
-  _TabItem(this.name, this.activeIcon, this.normalIcon);
+  int index;
+  _TabItem(this.name, this.activeIcon, this.normalIcon,this.index);
 
 }
 
@@ -55,8 +56,8 @@ class _MainPageState extends State<MainPage>{
   final itemNames=[
 
 
-    _TabItem('首页','assets/images/ic_assets_select.png','assets/images/ic_assets.png'),
-    _TabItem('Dapp','assets/images/ic_dapp_select.png','assets/images/ic_dapp.png')
+    _TabItem('首页','assets/images/ic_assets_select.png','assets/images/ic_assets.png',0),
+    _TabItem('Dapp','assets/images/ic_dapp_select.png','assets/images/ic_dapp.png',1)
   ];
   List<BottomNavigationBarItem> itemList;
 
@@ -81,7 +82,7 @@ class _MainPageState extends State<MainPage>{
 
           title: Text(
             item.name,
-            style: TextStyle(inherit:false,fontSize: 11.0),
+//            style: TextStyle(inherit:false,fontSize: 11.0),
 
           ),
           activeIcon:
@@ -90,10 +91,15 @@ class _MainPageState extends State<MainPage>{
 
 
 
+
+
     }
 
 
   }
+
+
+
 
   Widget _getPagesWidget(int index){
 
@@ -129,10 +135,12 @@ class _MainPageState extends State<MainPage>{
         },
         selectedFontSize: 11,
         unselectedFontSize: 11,
+        selectedLabelStyle: TextStyle(color:Colors.blue),
+        unselectedLabelStyle: TextStyle(color: Colors.black),
         iconSize: 20,
         currentIndex: _selectIndex,
-        fixedColor: Color.fromARGB(255,0,188,96),
-        type: BottomNavigationBarType.fixed,
+//        fixedColor: Colors.blue,
+//        type: BottomNavigationBarType.fixed,
       ))
      ,
     );
