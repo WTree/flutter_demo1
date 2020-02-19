@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app1/natives/NativeToastUtils.dart';
 import 'package:flutter_app1/views/dialogs/LoadingDialog.dart';
 
 class ToggleApp extends StatelessWidget {
@@ -90,7 +91,8 @@ class _ToggleAppPageState extends State<ToggleAppPage> {
 //          onPressed: _toggle,
         onPressed: () {
 //          showLoading(context);
-          showBottomSheetMenu(context);
+//          showBottomSheetMenu(context);
+        NativeToastUtils.showToast(message:"测试toast");
         },
         tooltip: 'update Text',
         child: new Icon(Icons.update),
