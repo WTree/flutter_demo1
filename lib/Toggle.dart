@@ -1,69 +1,78 @@
 import 'package:flutter/material.dart';
-import 'dart:convert';
-
-import 'package:flutter/material.dart';
 import 'package:flutter_app1/views/dialogs/LoadingDialog.dart';
 
-class ToggleApp extends StatelessWidget{
+class ToggleApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     return new MaterialApp(
-
       title: 'toggle App',
       theme: new ThemeData(primarySwatch: Colors.blue),
       home: new ToggleAppPage(),
-
     );
-
   }
-
 }
 
-
-class ToggleAppPage extends StatefulWidget{
-  ToggleAppPage({Key key}) : super(key:key);
-
+class ToggleAppPage extends StatefulWidget {
+  ToggleAppPage({Key key}) : super(key: key);
 
 //  @override
 //  _MyHomePageState createState() => _MyHomePageState();
 
-
-    @override
+  @override
   _ToggleAppPageState createState() => new _ToggleAppPageState();
-
-
-
-
 }
 
- showLoading(BuildContext context){
-
-  showDialog(context: context,
-
-    barrierDismissible: false,
-    builder: (BuildContext context){
-        return new LoadingDialog(text:" 正在加载...",);
-    }
-  );
+showLoading(BuildContext context) {
+  showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return new LoadingDialog(
+          text: " 正在加载1...",
+        );
+      });
 }
 
-class _ToggleAppPageState extends State<ToggleAppPage>{
+//显示底部弹窗
+showBottomSheetMenu(BuildContext context) {
+  showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          height: 350,
+          color: Colors.transparent,
+          child: Container(
+            decoration: new BoxDecoration(
+              color: Colors.white,
+              borderRadius: new BorderRadius.only(
+                  topLeft: const Radius.circular(10),
+                  topRight: const Radius.circular(10)),
+            ),
 
-  bool toggle =true;
-  void _toggle(){
+            child: new Center(child: new Text("this is modal sheet")),
+          ),
+        );
+      });
+}
+
+class _ToggleAppPageState extends State<ToggleAppPage> {
+  bool toggle = true;
+
+  void _toggle() {
     setState(() {
-      toggle =!toggle;
+      toggle = !toggle;
     });
   }
 
-  _getToggleChild(){
-    if(toggle){
+  _getToggleChild() {
+    if (toggle) {
       return new Text('Toggle One');
-    }else {
-      return new MaterialButton(onPressed: () {},child: new Text('Toggle Two'));
+    } else {
+      return new MaterialButton(
+          onPressed: () {}, child: new Text('Toggle Two'));
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -76,20 +85,16 @@ class _ToggleAppPageState extends State<ToggleAppPage>{
           _getToggleChild(),
           new Text("Row two"),
         ],
-
       ),
-      
       floatingActionButton: new FloatingActionButton(
 //          onPressed: _toggle,
-          onPressed: (){
-            showLoading(context);
-          },
-          tooltip: 'update Text',
-          child: new Icon(Icons.update),
+        onPressed: () {
+//          showLoading(context);
+          showBottomSheetMenu(context);
+        },
+        tooltip: 'update Text',
+        child: new Icon(Icons.update),
       ),
-      
     );
   }
-
-
 }
