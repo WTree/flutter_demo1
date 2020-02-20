@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app1/Utils/TimeUtils.dart';
 import 'package:flutter_app1/http/HttpManger.dart';
 import 'package:flutter_app1/member/Joy.dart';
+import 'package:flutter_app1/views/ErrorView.dart';
 import 'package:flutter_app1/views/list/BaseListStateHelper.dart';
 
 class NewsPager extends StatefulWidget{
@@ -33,8 +34,15 @@ class _NewsPageState extends BaseListStateHelper<NewsPager>  {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return  new RefreshIndicator(child: new ListView(children: _getListData(),controller: _scrollController,)
-        , onRefresh: onRefresh)
+    return
+      Stack(children: <Widget>[
+
+        new RefreshIndicator(child: new ListView(children: _getListData(),controller: _scrollController,)
+            , onRefresh: onRefresh),
+
+        ErrorView(errorControl)
+      ])
+
 
       ;
   }
@@ -59,6 +67,15 @@ class _NewsPageState extends BaseListStateHelper<NewsPager>  {
   }
 
 
+  @override
+  void retryLoad() {
+    // TODO: implement retryLoad
+    setState(() {
+      errorControl.status=ErrorStatus.STATUS_LOADING;
+    });
+    onRefresh();
+    print("重试########");
+  }
 
   @override
   void initState(){
@@ -124,6 +141,7 @@ class _NewsPageState extends BaseListStateHelper<NewsPager>  {
         setState(() {
           this.data=data;
           loadStatus = LoadingStatus.STATUS_IDEL;
+          errorControl.status=ErrorStatus.STATUS_HIDE;
         });
 
       }else{
@@ -134,6 +152,7 @@ class _NewsPageState extends BaseListStateHelper<NewsPager>  {
             this.data.addAll(data);
           }
           loadStatus = LoadingStatus.STATUS_IDEL;
+          errorControl.status=ErrorStatus.STATUS_HIDE;
         });
       }
       if(data!=null&&!data.isEmpty){
@@ -155,6 +174,9 @@ class _NewsPageState extends BaseListStateHelper<NewsPager>  {
       return 1;
 
     }catch(e){
+      setState(() {
+        this.errorControl.status=ErrorStatus.STATUS_RETRY;
+      });
 
       print(e);
       return null;
