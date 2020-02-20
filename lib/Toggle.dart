@@ -49,7 +49,6 @@ showBottomSheetMenu(BuildContext context) {
                   topLeft: const Radius.circular(10),
                   topRight: const Radius.circular(10)),
             ),
-
             child: new Center(child: new Text("this is modal sheet")),
           ),
         );
@@ -85,6 +84,61 @@ class _ToggleAppPageState extends State<ToggleAppPage> {
         children: <Widget>[
           _getToggleChild(),
           new Text("Row two"),
+          new SizedBox(
+            width: 120,
+            height: 120,
+            child: Container(
+              decoration: BoxDecoration(
+                  border: new Border.all(color: Color(0xffff0000), width: 0.5),
+                  color: Color(0xff939393),
+                  borderRadius: new BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color(0x99ffff00),
+                      offset: Offset(5.0, 5.0),
+                      blurRadius: 10.0,
+                      spreadRadius: 2.0,
+                    ),
+                    BoxShadow(
+                        color: Color(0x9900ff00), offset: Offset(1.0, 1.9)),
+                    BoxShadow(color: Color(0xff0000ff))
+                  ]),
+            ),
+          ),
+          new SizedBox(
+            width: 300,
+            height: 45,
+            child: Container(
+              decoration: new BoxDecoration(
+                  border: new Border.all(color: Color(0xffffff00), width: 0.5),
+                  gradient: RadialGradient(
+                      colors: [Color(0xffffff00), Color(0xff00ffff)],
+                      radius: 1,
+                      tileMode: TileMode.mirror)),
+            ),
+          ),
+          new SizedBox(
+            width: 300,
+            height: 45,
+            child: Container(
+              decoration: new BoxDecoration(
+                  border: new Border.all(color: Color(0xffffff00), width: 0.5),
+                  gradient: SweepGradient(
+                      colors: [Color(0xffffff00), Color(0xff00ffff)],
+                      startAngle: 0,endAngle: 1*3.14)),
+            ),
+          ),
+          new SizedBox(
+            width: 300,
+            height: 45,
+            child: Container(
+              decoration: new BoxDecoration(
+                  border: new Border.all(color: Color(0xffffff00), width: 0.5),
+                  gradient: LinearGradient(
+                      colors: [Color(0xffffff00), Color(0xff00ffff)],
+                      )),
+            ),
+          ),
         ],
       ),
       floatingActionButton: new FloatingActionButton(
@@ -92,7 +146,7 @@ class _ToggleAppPageState extends State<ToggleAppPage> {
         onPressed: () {
 //          showLoading(context);
 //          showBottomSheetMenu(context);
-        NativeToastUtils.showToast(message:"测试toast");
+          NativeToastUtils.showToast(message: "测试toast");
         },
         tooltip: 'update Text',
         child: new Icon(Icons.update),
