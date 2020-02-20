@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app1/ListPager.dart';
 import 'package:flutter_app1/Toggle.dart';
+import 'package:flutter_app1/pages/NewsPager.dart';
 
 
 
@@ -68,7 +69,7 @@ class _MainPageState extends State<MainPage>{
     if(pages==null){
       pages = [
         ToggleApp(),
-        ListPager()
+        NewsPager()
 
       ];
     }
