@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app1/Utils/TimeUtils.dart';
 import 'package:flutter_app1/http/HttpManger.dart';
 import 'package:flutter_app1/member/Joy.dart';
+import 'package:flutter_app1/pages/JoyDetailPage.dart';
 import 'package:flutter_app1/views/ErrorView.dart';
 import 'package:flutter_app1/views/list/BaseListStateHelper.dart';
 
@@ -197,6 +198,12 @@ class _NewsPageState extends BaseListStateHelper<NewsPager>  {
           child: new Padding(padding: new EdgeInsets.all(10.0),child:  getItemWidget(i,joy.content)),
           onTap: (){
 //          print("点击了");
+
+            String conte=joy.content;
+          Navigator.push(context, MaterialPageRoute(
+            builder: (context)=>JoyDetailPage(content:conte),
+          ));
+
           },
         ));
       }
