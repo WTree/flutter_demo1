@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app1/pages/MainPageLess.dart';
 import 'Toggle.dart';
 import 'ListPager.dart';
-import 'pages/Main.dart';
 
 void main() => runApp(MainPageLess());
 
