@@ -24,6 +24,7 @@ dependencies:
   json_annotation: ^2.0.0
   retrofit: any
   logger: any  #for logging purpose
+  webview_flutter: ^0.3.19+8
   flutter:
     sdk: flutter
 

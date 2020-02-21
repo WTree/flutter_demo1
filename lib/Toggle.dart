@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app1/natives/NativeToastUtils.dart';
+import 'package:flutter_app1/pages/NewWebPages.dart';
 import 'package:flutter_app1/views/dialogs/LoadingDialog.dart';
 
 class ToggleApp extends StatelessWidget {
@@ -146,7 +147,13 @@ class _ToggleAppPageState extends State<ToggleAppPage> {
         onPressed: () {
 //          showLoading(context);
 //          showBottomSheetMenu(context);
-          NativeToastUtils.showToast(message: "测试toast");
+//          NativeToastUtils.showToast(message: "测试toast");
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => NewWebPages("title","https://www.baidu.com/"),
+              ));
+
         },
         tooltip: 'update Text',
         child: new Icon(Icons.update),
