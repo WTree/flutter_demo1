@@ -13,11 +13,11 @@ enum LoadingStatus {
 
 abstract class BaseListStateHelper<T extends StatefulWidget> extends State {
   bool _isExitNextPage = true;
-  void retryLoad(){
 
-  }
+  ScrollController _listscrollController = new ScrollController();
+
   ErrorViewControl _errorControl;
-
+  var _loadStatus = LoadingStatus.STATUS_IDEL;
   BaseListStateHelper(){
     errorControl=ErrorViewControl(retry: retryLoad);
   }
@@ -29,6 +29,12 @@ abstract class BaseListStateHelper<T extends StatefulWidget> extends State {
   }
 
 
+  //listView 的滚动监听
+  ScrollController get listscrollController => _listscrollController;
+
+  int getOtherListSize(){
+    return isExitNextPage?1:0;
+  }
 
   get errorControl => _errorControl;
 
@@ -39,10 +45,41 @@ abstract class BaseListStateHelper<T extends StatefulWidget> extends State {
     _isExitNextPage=true;
     return null;
   }
+
+
+  get loadStatus => _loadStatus;
+
+  set loadStatus(value) {
+    _loadStatus = value;
+  }
+
+
+  @override
+  void initState() {
+    super.initState();
+    listensListScroll();
+  }
   void gotoNextPage(){
 
   }
+  void retryLoad(){
 
+  }
+
+  void listensListScroll(){
+    _listscrollController.addListener(() {
+
+      if (!isExitNextPage || _loadStatus == LoadingStatus.STATUS_LOADING) {
+        return;
+      }
+
+      if (_listscrollController.position.pixels ==
+          _listscrollController.position.maxScrollExtent) {
+        gotoNextPage();
+      }
+    });
+
+  }
   Widget getDefaultListFootWidget() {
     return new Offstage(
         offstage: !_isExitNextPage,
@@ -55,6 +92,10 @@ abstract class BaseListStateHelper<T extends StatefulWidget> extends State {
                     height: 40,
                     child: new CircularProgressIndicator()))));
   }
-
+  @override
+  void dispose() {
+    super.dispose();
+    _listscrollController.dispose();
+  }
 
 }

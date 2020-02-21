@@ -9,6 +9,7 @@ class JoyDetailPage extends StatelessWidget{
   String content;
 
   JoyDetailPage({this.content}){
+    print(content);
   }
 
   @override
