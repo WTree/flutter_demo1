@@ -94,7 +94,8 @@ class _MainPageState extends State<MainPage> {
               height: 50,
               child: BottomNavigationBar(
                 items: itemList,
-
+                elevation:0,
+                backgroundColor: Colors.white,
                 onTap: (int index) {
                   setState(() {
                     _selectIndex = index;
