@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app1/natives/NativeToastUtils.dart';
+import 'package:flutter_app1/pages/CamerPage.dart';
 import 'package:flutter_app1/pages/NewWebPages.dart';
+import 'package:flutter_app1/pages/QrCodePger.dart';
 import 'package:flutter_app1/views/dialogs/LoadingDialog.dart';
 
 class ToggleApp extends StatelessWidget {
@@ -151,7 +153,7 @@ class _ToggleAppPageState extends State<ToggleAppPage> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => NewWebPages("title","https://www.baidu.com/"),
+                builder: (context) => CamperPage(),
               ));
 
         },
